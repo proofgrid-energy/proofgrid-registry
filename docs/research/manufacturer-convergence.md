@@ -1,6 +1,6 @@
 # Manufacturer convergence — initial evidence audit
 
-Reviewed 2026-09-05. Status: **preliminary support; formal M0 gate open**. No executable Rule Packs exist.
+Reviewed 2026-09-05. Status: **bounded M0 representation PASS; production policy readiness remains open**. No complete manufacturer Rule Packs exist. The initial audit below is preserved; the follow-up assessment at the end supersedes its preliminary verdict.
 
 ## Supplied evidence versus new observations
 
@@ -69,3 +69,32 @@ The selected requirements appear representable without manufacturer branches. Th
 ## Next research action
 
 Recheck current official indexes for applicable product/region versions; obtain readable primary snapshots or equivalent official text for unresolved passages. Expand the matrix within a stated bounded scope, retaining required/conditional/contextual/unknown distinctions, source locators and date knowledge. Verify incorporated manuals where load-bearing. Store provenance and hashes for obtained artifacts; preserve external document rights. If ambiguity persists, mark the affected rules non-executable and explain whether that blocks M0 rather than silently relaxing the gate.
+
+## Follow-up: bounded representation decision
+
+The resumed roadmap distinguishes the M0 representation hypothesis from a complete, currently applicable policy implementation. The latter belongs to M2/M3 and is not established here. The bounded corpus is G1's claim-evidence section, Y1's failure-investigation/replacement and purchase-provenance sections, and D2's AU/NZ claim-evidence sections. No claim is made for all models, all jurisdictions, or every warranty exclusion.
+
+The [Dyness ZA download index](https://za.dyness.com/download) still directly links Y1 as the DL5.0C Pro warranty. This verifies the source's current listing, not its effective date. Y1 p3 section 2.4.1 supplies purchase provenance through the seller relationship: map `Purchase.seller_ref` to an `Actor` and scoped `Authorization`. This closes the missing purchase-domain representation without reconstructing the incomplete claim-list phrase as an invoice requirement.
+
+D2 is the [Deye SUN AU/NZ v2.9 document](https://www.deyeinverter.com/deyeinverter/2025/12/03/WarrantyDocument-DeyeSUNSeriesinverter10-YearLimitedWarrantyforInstallationinAustraliaandNewZealand-V2.91.pdf). Use its explicitly bounded AU-type SUN inverter / AU-NZ installation scope for this study. D1 remains historical evidence; do not infer that the higher-numbered regional document supersedes every global contract. The [newer general agreement](https://www.deyeinverter.com/deyeinverter/2025/04/16/generalwarrantyagreement-deye-v2.3-10.pdf) has regional exclusions and partially unreadable extracted model tables; it is excluded from executable scope.
+
+| Additional source/locator | Observation/class | Canonical representation |
+| --- | --- | --- |
+| D2 p5 section 3 | Identity/configuration/fault data, R for claims | Asset, SystemConfiguration, Fault, Evidence |
+| D2 p6 section 5 | Initial installation/failure dates, R for claims | Installation.installation_date, Fault.occurred_at |
+| D2 p6 section 5 | Claimant contact/shipping information, R | Actor; private off-chain contact reference |
+| D2 p6 section 5 versus p5 section 3 | Invoice wording differs, unresolved | Purchase.proof_of_purchase; non-executable ambiguity |
+| D2 p6 section 5 | Logs and potentially requested analysis, R/C | Diagnostics.logs, Diagnostics.readings, Evidence |
+
+D2's effective-date text is `01/11/2023`; preserve that raw form until its interpretation is verified. Its serial-era condition and capacity-log wording also remain outside the M1 slice. Review date is 2026-09-05. No production AU/NZ pack is asserted.
+
+### Gate result and limits
+
+1. Identity, purchase provenance, installation, system configuration, fault and evidence concepts have explicit mappings across the bounded corpus. Common domains do not imply identical mandatory fields.
+2. Y1's paired-inverter data can be represented as typed canonical components and constrained externally. It requires no Dyness-specific property or core manufacturer branch.
+3. Scoped actor authorization, source jurisdiction/version metadata and old/new component references represent the observed differences. Unresolved dates remain unknown data.
+4. Source ambiguity affects which constraints are executable, not whether the shared representation can hold them. No observed source conflict forces a different core model. Do not count unresolved constraints as satisfied.
+
+**Decision: M0 passes for this bounded schema experiment.** This replaces the earlier open *representation* verdict based on the added purchase-provenance mapping and explicit Deye regional scope. It does not close policy completeness, enforceable eligibility, full legal/operational review or fourth-manufacturer extensibility. M1 must still test the proposed representation, including a negative paired-inverter fixture; an opaque extension bag is not acceptable proof.
+
+The future partial Dyness demonstration is limited to paired-inverter manufacturer/model/specification presence during failure investigation. It must expose unknown effective-date applicability and excluded rules, make no warranty-readiness claim, and never infer invoice requirements, compatibility, operating limits, approval or physical truth. Ambiguous Y1 deadlines/proof and D2 invoice wording stay quarantined for later source review.
