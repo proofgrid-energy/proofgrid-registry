@@ -20,7 +20,15 @@ An explicit integration check can additionally compare canonical schema bytes:
 node scripts/check-contract.mjs --core ../proofgrid-core
 ```
 
-The checked-in schemas are a **source snapshot**, not a verified npm package export. Do not hand-edit them. Replace them from a verified core artifact when package installation/builds are available, preserving provenance and hashes. LF line endings are pinned for stable hashes. Core has no dependency on this registry.
+The checked-in schemas match the exported bytes of the local private `@proofgrid/core@0.1.0-draft.0` schema-only npm artifact. Provenance records its source commit and captured archive SHA-256; no package has been published. Do not hand-edit these schemas. LF line endings are pinned for stable hashes. Core has no dependency on this registry.
+
+After following core's local packing/extraction instructions, check the extracted package explicitly:
+
+```sh
+node scripts/check-contract.mjs --package ../proofgrid-core/.local-checks/consumer/node_modules/@proofgrid/core
+```
+
+This checks package name/version, both export mappings and schema bytes. The default command checks only the standalone snapshot and citations. The recorded archive hash identifies the reviewed capture, not a guarantee that rebuilding on another platform reproduces its hash. TypeScript runtime consumer verification remains pending.
 
 Schema fixture checks require Node.js and an installed VS Code JSON language server. The repository carries only the test framing/verification code, derived from core's MPL-2.0 test helper; it does not vendor Microsoft's server. Verification used `vscode-json-languageserver` 1.3.4 and Node 24.19.0.
 

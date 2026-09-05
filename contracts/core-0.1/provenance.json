@@ -1,8 +1,11 @@
 {
   "schema_version": "0.1",
   "source_repository": "https://github.com/proofgrid-energy/proofgrid-core",
-  "source_commit": "3be19f7531558ea44902220d20ae3c0104b036e4",
-  "capture_method": "direct source snapshot; npm packed artifact verification pending",
+  "source_commit": "a3fdf158219ce514f4d0008a85ea86311fc1d972",
+  "capture_method": "schema bytes verified against extracted local npm pack artifact; no publication",
+  "package_name": "@proofgrid/core",
+  "package_version": "0.1.0-draft.0",
+  "artifact_sha256": "d33ac2eccc32d59e55685639c5104359471d94e65b333ab93a022f0ec91c9a12",
   "reviewed_at": "2026-09-05",
   "sha256": {
     "evidence.schema.json": "1c4c52ca08587dc32997491d074a62f2ba79a3ba1ad4d277b05a5011c865d82a",

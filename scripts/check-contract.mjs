@@ -10,7 +10,17 @@ const read = file => JSON.parse(readFileSync(resolve(root, file), 'utf8'));
 const provenance = read('contracts/core-0.1/provenance.json');
 assert.equal(provenance.schema_version, '0.1');
 const args = process.argv.slice(2);
-assert.ok(args.length === 0 || (args.length === 2 && args[0] === '--core'), 'Usage: node scripts/check-contract.mjs [--core PATH]');
+assert.ok(args.length === 0 || (args.length === 2 && ['--core', '--package'].includes(args[0])), 'Usage: node scripts/check-contract.mjs [--core PATH | --package EXTRACTED_PACKAGE]');
+assert.deepEqual(Object.keys(provenance.sha256).sort(), ['evidence.schema.json', 'rule-pack.schema.json']);
+if (args[0] === '--package') {
+  const metadata = JSON.parse(readFileSync(resolve(args[1], 'package.json'), 'utf8'));
+  assert.equal(metadata.name, provenance.package_name);
+  assert.equal(metadata.version, provenance.package_version);
+  for (const file of Object.keys(provenance.sha256)) {
+    const subpath = `./schemas/0.1/${file}`;
+    assert.equal(metadata.exports[subpath], subpath, 'Unexpected schema export');
+  }
+}
 for (const [file, expected] of Object.entries(provenance.sha256)) {
   const bytes = readFileSync(resolve(root, 'contracts/core-0.1', file));
   assert.equal(createHash('sha256').update(bytes).digest('hex'), expected, file + ' snapshot hash changed');
@@ -39,4 +49,4 @@ for (const rule of pack.rules) {
   if (rule.status === 'unresolved') assert.ok(!('constraint' in rule), 'Unresolved rule must not execute');
 }
 console.log('Contract snapshot hashes, source links and rule citations passed' + (args.length ? '; supplied core schema bytes match.' : '.'));
-console.log('Source snapshot only: packed npm artifact and runtime applicability checks remain pending.');
+console.log('Snapshot matches the recorded local schema-only package capture; runtime applicability checks remain pending.');
