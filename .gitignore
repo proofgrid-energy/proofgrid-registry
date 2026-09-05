@@ -6,3 +6,5 @@ dist/
 .env
 .env.*
 !.env.example
+
+!vendor/proofgrid-core-0.1.0-draft.1.tgz

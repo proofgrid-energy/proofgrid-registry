@@ -1,0 +1,17 @@
+{
+  "name": "@proofgrid/registry",
+  "version": "0.1.0-draft.1",
+  "private": true,
+  "type": "module",
+  "license": "MPL-2.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "test": "node scripts/check-contract.mjs && node --test --test-isolation=none test/*.test.mjs",
+    "check:contract": "node scripts/check-contract.mjs"
+  },
+  "dependencies": {
+    "@proofgrid/core": "file:vendor/proofgrid-core-0.1.0-draft.1.tgz"
+  }
+}

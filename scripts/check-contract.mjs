@@ -9,6 +9,8 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => JSON.parse(readFileSync(resolve(root, file), 'utf8'));
 const provenance = read('contracts/core-0.1/provenance.json');
 assert.equal(provenance.schema_version, '0.1');
+assert.equal(provenance.artifact_path, 'vendor/proofgrid-core-0.1.0-draft.1.tgz');
+assert.equal(createHash('sha256').update(readFileSync(resolve(root, provenance.artifact_path))).digest('hex'), provenance.artifact_sha256, 'Vendored core artifact hash changed');
 const args = process.argv.slice(2);
 assert.ok(args.length === 0 || (args.length === 2 && ['--core', '--package'].includes(args[0])), 'Usage: node scripts/check-contract.mjs [--core PATH | --package EXTRACTED_PACKAGE]');
 assert.deepEqual(Object.keys(provenance.sha256).sort(), ['evidence.schema.json', 'rule-pack.schema.json']);
@@ -49,4 +51,4 @@ for (const rule of pack.rules) {
   if (rule.status === 'unresolved') assert.ok(!('constraint' in rule), 'Unresolved rule must not execute');
 }
 console.log('Contract snapshot hashes, source links and rule citations passed' + (args.length ? '; supplied core schema bytes match.' : '.'));
-console.log('Snapshot matches the recorded local schema-only package capture; runtime applicability checks remain pending.');
+console.log('Snapshot and vendored runtime artifact match recorded provenance; npm test exercises the installed runtime.');
