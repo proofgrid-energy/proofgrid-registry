@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "node scripts/check-contract.mjs && node --test --test-isolation=none test/*.test.mjs",
-    "check:contract": "node scripts/check-contract.mjs"
+    "check:contract": "node scripts/check-contract.mjs",
+    "demo": "node scripts/demo.mjs"
   },
   "dependencies": {
     "@proofgrid/core": "file:vendor/proofgrid-core-0.2.0-draft.0.tgz"

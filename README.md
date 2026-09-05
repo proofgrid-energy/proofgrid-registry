@@ -1,33 +1,51 @@
 # proofgrid-registry
 
-Source-backed manufacturer evidence rules for ProofGrid. Canonical schemas and the validation library belong to proofgrid-core; this repository owns source interpretation and manufacturer fixtures.
+Source-backed claim-intake evidence packs for ProofGrid. Four manufacturers use the same canonical schemas and core runtime: Growatt, Dyness, Deye and Victron. Each pack names a narrow product/context, cites sources and keeps uncertain clauses unresolved.
 
-**Status: three reviewed claim-intake packs with 26 passing tests.** See [catalog](catalog.json), runnable JSON records under examples/, and [scope review](docs/research/claim-intake-review.md). These packs cover the named intake fields and retain manual-review clauses. The historical M1 example remains below for context.
+**Status: functional developer preview with 39 tests.** This is evidence preparation, not warranty eligibility or approval. All current source dates need applicability review, so complete examples return review_required.
 
- The [partial Dyness DL5.0C Pro draft](rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json) checks paired-inverter manufacturer/model presence during failure investigation. Specifications, compatibility, complete policies and warranty approval are outside its coverage. The effective date is unknown and the purchase-proof wording remains unresolved.
+## Run the examples
 
-## Standalone checks
-
-Requires Node 24+ and npm; use npm.cmd in PowerShell.
+Node 24+ and npm; use npm.cmd in PowerShell.
 
 ```sh
 npm ci
 npm test
+npm run demo
 npm run check:contract -- --package node_modules/@proofgrid/core
 ```
 
-The private package pins the complete local core runtime tarball under vendor/ with a real npm lockfile. No sibling checkout or npm publication is required. Transitive dependencies are fetched normally by npm ci. [Provenance](contracts/core-0.1/provenance.json) records the source commit, package version and exact tarball SHA-256. The archive is a captured artifact, not a cross-platform reproducibility claim. The snapshot schemas are verified copies of its public exports; do not hand-edit them.
+The demo selects each example from the complete catalog and asserts its expected review_required result. For a detailed CLI report:
 
-npm test checks archive/snapshot hashes and source citations, then runs eight assertions through the installed runtime: two canonical fixtures, pack metadata, four paired-inverter cases and exact jurisdiction handling. Constraint outcomes stay separate from unknown applicability. Unresolved source clauses never become satisfied. CI runs these same standalone checks; remote CI execution must be confirmed separately.
+```sh
+node node_modules/@proofgrid/core/dist/src/cli.js assess --record examples/dyness-claim.json --catalog catalog.json --jurisdiction africa --date 2026-09-05 --format text
+```
 
-Optional explicit source comparison: node scripts/check-contract.mjs --core ../proofgrid-core. This compares source schema bytes; it does not pack or validate sibling runtime code. --package checks installed package metadata, versioned exports and schema bytes. The original language-server fixture helpers remain available but are not needed for npm test.
+That command intentionally exits 2 for review_required. Exit 0 means scoped_checks_met, 1 incomplete and 3 invalid input. Unknown effective dates are never replaced by source review dates; ambiguous catalogs never choose a guessed latest version.
 
-## Source and review boundaries
+## Catalog
 
-See [manufacturer convergence research](docs/research/manufacturer-convergence.md) and [source metadata](sources/index.json). Manufacturer documents are linked, not redistributed. No unavailable PDF checksum is invented. Every new rule needs a source locator, product/jurisdiction/version scope, date knowledge and positive/negative fixtures. Preserve ambiguity as unresolved. No automatic country-to-region or policy selection is implemented; NG is not silently expanded to africa.
+| Manufacturer | Example/model | Executable scope |
+| --- | --- | --- |
+| Growatt | MIN 5000TL-X | Identity, PV/grid configuration and fault description |
+| Dyness | DL5.0C Pro | Serial, paired inverter/specification, operating/PV/load data, fault and log references |
+| Deye | SUN-5K-SG04LP1-AU | Identity, PV/grid data, installation and fault/date |
+| Victron | BAT512110610 | Battery-usage proof presence |
 
-The bounded three-manufacturer representation finding is not a complete policy or Nigeria applicability verdict. M2 must review full scoped rule coverage. No customer evidence belongs in these fixtures.
+See [catalog.json](catalog.json), examples/, [intake source review](docs/research/claim-intake-review.md), [fourth-manufacturer result](docs/research/fourth-manufacturer.md) and [source register](sources/index.json). The original M1 Dyness pack remains for regression coverage and is excluded from catalog selection.
+
+These are scoped field checks, not complete manufacturer policies. Pointer presence cannot establish correct use, authorized repairs or document contents. Deye AU/NZ is not Nigeria; the Victron unspecified label does not mean worldwide applicability. No automatic region expansion occurs.
+
+## Standalone artifact boundary
+
+The complete private @proofgrid/core@0.2.0-draft.0 artifact is pinned under vendor/ with npm lockfile integrity and [source/hash provenance](contracts/core-0.1/provenance.json). No sibling checkout or publication is required. npm ci fetches transitive dependencies normally. The older M1 archive is retained as a historical capture; only the new artifact is installed.
+
+npm test verifies archive/schema hashes and every rule's citations, then tests fields, uncertainty, catalog selection and broken links through the installed runtime. --package checks installed metadata/exports/schema bytes. Optional --core ../proofgrid-core compares schema source bytes only. Do not hand-edit contract snapshots.
+
+## Contribute
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [real backlog](docs/backlog.md) and [SECURITY.md](SECURITY.md). Pack changes need source review and targeted fixtures. Manufacturer documents remain linked and retain their rights; only actually obtained bytes receive hashes. No customer evidence belongs in fixtures.
 
 ## License
 
-New ProofGrid source is MPL-2.0; third-party documents retain their rights. See [LICENSE](LICENSE) and [LICENSING.md](LICENSING.md). The vendored core artifact includes its own license notices and preserved Apache grants.
+New ProofGrid source uses MPL-2.0. [LICENSING.md](LICENSING.md) preserves earlier Apache grants. The vendored core carries its own notices. Archive hashes identify captures, not reproducible-build or manufacturer-approval guarantees.
