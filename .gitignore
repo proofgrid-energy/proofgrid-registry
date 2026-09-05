@@ -8,3 +8,4 @@ dist/
 !.env.example
 
 !vendor/proofgrid-core-0.1.0-draft.1.tgz
+!vendor/proofgrid-core-0.2.0-draft.0.tgz

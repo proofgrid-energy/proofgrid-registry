@@ -12,6 +12,6 @@
     "check:contract": "node scripts/check-contract.mjs"
   },
   "dependencies": {
-    "@proofgrid/core": "file:vendor/proofgrid-core-0.1.0-draft.1.tgz"
+    "@proofgrid/core": "file:vendor/proofgrid-core-0.2.0-draft.0.tgz"
   }
 }

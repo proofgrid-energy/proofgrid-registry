@@ -9,7 +9,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => JSON.parse(readFileSync(resolve(root, file), 'utf8'));
 const provenance = read('contracts/core-0.1/provenance.json');
 assert.equal(provenance.schema_version, '0.1');
-assert.equal(provenance.artifact_path, 'vendor/proofgrid-core-0.1.0-draft.1.tgz');
+assert.equal(provenance.artifact_path, 'vendor/proofgrid-core-0.2.0-draft.0.tgz');
 assert.equal(createHash('sha256').update(readFileSync(resolve(root, provenance.artifact_path))).digest('hex'), provenance.artifact_sha256, 'Vendored core artifact hash changed');
 const args = process.argv.slice(2);
 assert.ok(args.length === 0 || (args.length === 2 && ['--core', '--package'].includes(args[0])), 'Usage: node scripts/check-contract.mjs [--core PATH | --package EXTRACTED_PACKAGE]');
