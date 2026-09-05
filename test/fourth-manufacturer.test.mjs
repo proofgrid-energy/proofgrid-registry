@@ -1,0 +1,8 @@
+// SPDX-License-Identifier: MPL-2.0
+import {test} from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {createHash} from 'node:crypto';import {assessEvidence,validateEvidence,validateRulePack} from '@proofgrid/core';
+const read=p=>JSON.parse(readFileSync(new URL(p,import.meta.url)));
+const pack=read('../rules/victron/unspecified/bat512110610/0.1.0.json'),record=read('../examples/victron-claim.json');
+test('fourth manufacturer uses unchanged pinned schemas',()=>{const p=read('../contracts/core-0.1/provenance.json');for(const [file,hash] of Object.entries(p.sha256))assert.equal(createHash('sha256').update(readFileSync(new URL('../contracts/core-0.1/'+file,import.meta.url))).digest('hex'),hash);assert.equal(validateRulePack(pack).valid,true);assert.equal(validateEvidence(record).valid,true);const r=assessEvidence(record,[pack]);assert.equal(r.outcome,'review_required');assert.equal(r.evaluation.rules[0].status,'satisfied');});
+for(const state of ['missing','expired','revoked','not_applicable'])test('fourth manufacturer rejects '+state+' usage proof',()=>{const d=structuredClone(record);d.evidence[0].state=state;if(['missing','not_applicable'].includes(state))delete d.evidence[0].content_ref;assert.equal(assessEvidence(d,[pack]).outcome,'incomplete');});
+test('fourth manufacturer rejects unrelated evidence',()=>{const d=structuredClone(record);d.evidence[0].evidence_type='photo';assert.equal(assessEvidence(d,[pack]).outcome,'incomplete');});
+test('fourth manufacturer retains uncertainty',()=>{const d=structuredClone(record);d.evidence[0].state='unverified';assert.equal(assessEvidence(d,[pack]).outcome,'review_required');assert.equal(d.evidence[0].state,'unverified');});

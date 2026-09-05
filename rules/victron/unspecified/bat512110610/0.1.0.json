@@ -1,0 +1,101 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "victron-battery-usage-proof",
+  "pack_version": "0.1.0",
+  "manufacturer": "victron",
+  "product_scope": {
+    "product_type": "battery",
+    "models": [
+      "BAT512110610"
+    ]
+  },
+  "jurisdiction": "unspecified",
+  "effective": {
+    "status": "unknown",
+    "reason": "No policy effective date established"
+  },
+  "sources": [
+    {
+      "source_id": "victron-limited-warranty",
+      "title": "Victron Energy limited warranty policy",
+      "url": "https://www.victronenergy.com/upload/documents/Victron-Energy-Limited-Warranty-Policy.pdf",
+      "document_version": null,
+      "reviewed_at": "2026-09-05"
+    }
+  ],
+  "coverage": "partial",
+  "limitations": [
+    "Battery-usage proof presence only; correctness needs human review",
+    "Geographic/customer-contract applicability unresolved; unspecified is not a global match"
+  ],
+  "rules": [
+    {
+      "rule_id": "usage-proof",
+      "description": "Provide battery-usage proof for review",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "victron-limited-warranty",
+          "locator": "Page 1, Warranty, battery paragraph"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "evidence"
+        ],
+        "properties": {
+          "evidence": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "required": [
+                "evidence_type",
+                "state",
+                "content_ref"
+              ],
+              "properties": {
+                "evidence_type": {
+                  "const": "battery_usage_proof"
+                },
+                "state": {
+                  "enum": [
+                    "present",
+                    "unverified",
+                    "verified"
+                  ]
+                },
+                "content_ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "proof-correctness",
+      "description": "Correct usage and contract scope require review",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "victron-limited-warranty",
+          "locator": "Page 1, Warranty, battery paragraph"
+        }
+      ],
+      "reason": "Presence cannot establish correct use or warranty coverage"
+    }
+  ],
+  "revision_history": [
+    {
+      "version": "0.1.0",
+      "reviewed_at": "2026-09-05",
+      "summary": "Fourth-manufacturer test using existing Evidence fields"
+    }
+  ]
+}

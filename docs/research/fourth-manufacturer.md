@@ -1,0 +1,5 @@
+# Fourth manufacturer: Victron
+
+M4 bounded extensibility experiment, reviewed 2026-09-05. The official limited warranty policy requires proof of correct battery usage. The pack checks presence of an off-chain proof reference in existing typed Evidence fields. Correctness, contract scope and applicability remain unresolved. Model BAT512110610 is corroborated by [Victron's model table](https://www.victronenergy.com/media/pg/Lithium_Battery_Smart_-_Circuit_Board_Replacement_Instructions/en/lithium-battery-smart-spare-parts-list.html).
+
+The official PDF was captured locally; its hash is in sources/index.json. No document is redistributed. Seven tests cover valid input, unavailable/unrelated proof and uncertainty. No core source, schema or manufacturer branch was added. Core package 0.2.0-draft.0 already supports this representation. This passes the bounded extensibility test, not whole-policy generality. Pylontech was an earlier suggestion; its current download page returned no usable document links. Victron supplies the independently readable source for this experiment.

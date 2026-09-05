@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "record_id": "synthetic-victron-claim",
+  "asset": {
+    "asset_id": "battery-1",
+    "manufacturer": "victron",
+    "model": "BAT512110610",
+    "product_type": "battery",
+    "serial_number": "SYNTHETIC-001"
+  },
+  "evidence": [
+    {
+      "evidence_id": "usage-1",
+      "evidence_type": "battery_usage_proof",
+      "state": "present",
+      "content_ref": "local:synthetic-usage-proof"
+    }
+  ]
+}

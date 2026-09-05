@@ -15,6 +15,11 @@
       "pack": "rules/deye/au-nz/sun-5k-sg04lp1-au/0.2.0.json",
       "example": "examples/deye-claim.json",
       "scope": "Page 5, section 3 claim information; page 6, section 5"
+    },
+    {
+      "pack": "rules/victron/unspecified/bat512110610/0.1.0.json",
+      "example": "examples/victron-claim.json",
+      "scope": "Battery-usage proof presence only; source page 1"
     }
   ]
 }
