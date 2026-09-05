@@ -1,7 +1,5 @@
 # ProofGrid Registry
 
-![ProofGrid Registry banner with the connected grid emblem and green accents](assets/brand/readme-banner.png)
-
 [![CI](https://github.com/proofgrid-energy/proofgrid-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/proofgrid-energy/proofgrid-registry/actions/workflows/ci.yml)
 
 **Source-backed manufacturer evidence requirements, expressed as scoped, testable Rule Packs.**
