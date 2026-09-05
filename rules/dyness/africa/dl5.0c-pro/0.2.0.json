@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "dyness-claim-intake",
+  "pack_version": "0.2.0",
+  "manufacturer": "dyness",
+  "product_scope": {
+    "product_type": "battery",
+    "models": [
+      "DL5.0C Pro"
+    ]
+  },
+  "jurisdiction": "africa",
+  "effective": {
+    "status": "unknown",
+    "reason": "Effective date not established by reviewed source"
+  },
+  "sources": [
+    {
+      "source_id": "dyness-dl5-0c-pro-africa",
+      "title": "Dyness DL5.0C Pro ESS System warranty (Africa)",
+      "url": "https://za.dyness.com/Public/Uploads/uploadfile/files/20251022/DynessWarrantyTermsDL5.0CPro10nianfeizhou2025071.pdf",
+      "document_version": "Cover V2-202502; running label 202410 (unresolved)",
+      "reviewed_at": "2026-09-05"
+    }
+  ],
+  "coverage": "partial",
+  "limitations": [
+    "Claim-intake evidence only; no warranty eligibility or approval",
+    "Presence does not verify contents, authorization or physical facts",
+    "Source list is non-exhaustive; temperature/procedure interpretation remains manual",
+    "Purchase/seller authorization, replacement eligibility and operating limits are not automated"
+  ],
+  "rules": [
+    {
+      "rule_id": "identity",
+      "description": "Faulty equipment serial",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "asset"
+        ],
+        "properties": {
+          "asset": {
+            "type": "object",
+            "required": [
+              "serial_number"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "paired-inverter",
+      "description": "Paired inverter identity and specification reference",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "system_configuration"
+        ],
+        "properties": {
+          "system_configuration": {
+            "type": "object",
+            "required": [
+              "components"
+            ],
+            "properties": {
+              "components": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "required": [
+                    "product_type",
+                    "manufacturer",
+                    "model",
+                    "specification_evidence"
+                  ],
+                  "properties": {
+                    "product_type": {
+                      "const": "inverter"
+                    },
+                    "specification_evidence": {
+                      "type": "array",
+                      "minItems": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "configuration",
+      "description": "Operating mode, load and PV configuration",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "system_configuration"
+        ],
+        "properties": {
+          "system_configuration": {
+            "type": "object",
+            "required": [
+              "operating_mode",
+              "load",
+              "panels_per_string",
+              "string_count"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "fault",
+      "description": "Fault description",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "fault"
+        ],
+        "properties": {
+          "fault": {
+            "type": "object",
+            "required": [
+              "description"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "logs",
+      "description": "Battery operation log references",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "diagnostics"
+        ],
+        "properties": {
+          "diagnostics": {
+            "type": "object",
+            "required": [
+              "logs"
+            ],
+            "properties": {
+              "logs": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "temperature-and-procedure",
+      "description": "Working temperature and operating procedures require contextual review",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "reason": "Working temperature and operating procedures require contextual review"
+    },
+    {
+      "rule_id": "proof-and-deadlines",
+      "description": "Proof wording and differing notification deadlines remain unresolved",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Pages 4-5, Claim; exclusions (15)"
+        }
+      ],
+      "reason": "Proof wording and differing notification deadlines remain unresolved"
+    },
+    {
+      "rule_id": "replacement-approval",
+      "description": "Repair/replacement written approval and serial linkage require review when relevant",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility (2)"
+        }
+      ],
+      "reason": "Repair/replacement written approval and serial linkage require review when relevant"
+    }
+  ],
+  "revision_history": [
+    {
+      "version": "0.2.0",
+      "reviewed_at": "2026-09-05",
+      "summary": "Reviewed claim-intake scope with explicit manual-review exclusions"
+    }
+  ]
+}

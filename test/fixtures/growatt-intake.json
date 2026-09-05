@@ -1,0 +1,18 @@
+{
+  "pack": "../../rules/growatt/outside-mainland-china/min-5000tl-x/0.2.0.json",
+  "record": "../../examples/growatt-claim.json",
+  "omissions": [
+    {
+      "rule_id": "identity",
+      "path": "asset.serial_number"
+    },
+    {
+      "rule_id": "configuration",
+      "path": "system_configuration.grid_voltage"
+    },
+    {
+      "rule_id": "fault",
+      "path": "fault.description"
+    }
+  ]
+}

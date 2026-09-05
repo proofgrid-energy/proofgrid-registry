@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1",
+  "record_id": "synthetic-dyness-claim",
+  "asset": {
+    "asset_id": "synthetic-primary",
+    "manufacturer": "dyness",
+    "model": "DL5.0C Pro",
+    "product_type": "battery",
+    "serial_number": "SYNTHETIC-001"
+  },
+  "system_configuration": {
+    "panels_per_string": 8,
+    "string_count": 2,
+    "operating_mode": "self-consumption",
+    "load": {
+      "value": 1200,
+      "unit": "W"
+    },
+    "components": [
+      {
+        "asset_id": "inverter-1",
+        "manufacturer": "example",
+        "model": "SYNTHETIC",
+        "product_type": "inverter",
+        "specification_evidence": [
+          "spec-1"
+        ]
+      }
+    ]
+  },
+  "fault": {
+    "fault_id": "fault-1",
+    "description": "Synthetic battery shutdown"
+  },
+  "diagnostics": {
+    "logs": [
+      "log-1"
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "spec-1",
+      "evidence_type": "specification",
+      "state": "present",
+      "content_ref": "local:synthetic-spec"
+    },
+    {
+      "evidence_id": "log-1",
+      "evidence_type": "operation_log",
+      "state": "present",
+      "content_ref": "local:synthetic-log"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -31,7 +31,9 @@ for (const [file, expected] of Object.entries(provenance.sha256)) {
     assert.ok(bytes.equals(current), file + ' differs from the explicitly supplied core source');
   }
 }
-const pack = read('rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json');
+function ruleFiles(dir) { return readdirSync(resolve(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?ruleFiles(dir+'/'+e.name):e.name.endsWith('.json')?[dir+'/'+e.name]:[]); }
+for (const file of ruleFiles('rules')) {
+const pack = read(file);
 assert.equal(pack.schema_version, provenance.schema_version);
 const index = read('sources/index.json');
 const sources = new Map(pack.sources.map(source => [source.source_id, source]));
@@ -49,6 +51,7 @@ for (const rule of pack.rules) {
     assert.ok(citation.locator.trim(), 'Rule has no locator');
   }
   if (rule.status === 'unresolved') assert.ok(!('constraint' in rule), 'Unresolved rule must not execute');
+}
 }
 console.log('Contract snapshot hashes, source links and rule citations passed' + (args.length ? '; supplied core schema bytes match.' : '.'));
 console.log('Snapshot and vendored runtime artifact match recorded provenance; npm test exercises the installed runtime.');

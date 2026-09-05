@@ -8,10 +8,29 @@
       "reviewed_at": "2026-09-05",
       "index_url": "https://za.dyness.com/download",
       "index_label": "DL5.0C Pro Warranty-EN",
-      "retrieval": "Official web text and download-index link; no local PDF bytes available",
+      "retrieval": "Official bytes captured locally; text reviewed through official web source",
+      "sha256": "6747ce91e52e003e2b4a700f06cbb5f0e434e8afc9148d221cca70048531a403",
+      "rights": "Manufacturer retains rights; original document not redistributed"
+    },
+    {
+      "source_id": "growatt-service-commitment",
+      "title": "Growatt service commitment",
+      "url": "https://en.growatt.com/support/warranty",
+      "document_version": null,
+      "reviewed_at": "2026-09-05",
+      "retrieval": "Official bytes captured locally; text reviewed through official web source",
+      "sha256": "b89bba9790a155c28063e0f85185874e41f08c2c178c360fd416847bf1f5b1b7",
+      "rights": "Manufacturer retains rights; original document not redistributed"
+    },
+    {
+      "source_id": "deye-au-nz-v2-9",
+      "title": "Deye SUN AU/NZ warranty v2.9",
+      "url": "https://www.deyeinverter.com/deyeinverter/2025/12/03/WarrantyDocument-DeyeSUNSeriesinverter10-YearLimitedWarrantyforInstallationinAustraliaandNewZealand-V2.91.pdf",
+      "document_version": "V2.9",
+      "reviewed_at": "2026-09-05",
+      "retrieval": "Official web-extracted text reviewed; direct byte download failed",
       "sha256": null,
-      "sha256_reason": "No byte snapshot obtained; no digest invented",
-      "rights": "Manufacturer retains document rights; PDF is not redistributed"
+      "rights": "Manufacturer retains rights; original document not redistributed"
     }
   ]
 }

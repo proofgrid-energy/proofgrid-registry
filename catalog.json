@@ -1,0 +1,20 @@
+{
+  "catalog_version": "0.1",
+  "packs": [
+    {
+      "pack": "rules/growatt/outside-mainland-china/min-5000tl-x/0.2.0.json",
+      "example": "examples/growatt-claim.json",
+      "scope": "Other important notice (1), items 1-3"
+    },
+    {
+      "pack": "rules/dyness/africa/dl5.0c-pro/0.2.0.json",
+      "example": "examples/dyness-claim.json",
+      "scope": "Page 5, Responsibility and Obligation (1)"
+    },
+    {
+      "pack": "rules/deye/au-nz/sun-5k-sg04lp1-au/0.2.0.json",
+      "example": "examples/deye-claim.json",
+      "scope": "Page 5, section 3 claim information; page 6, section 5"
+    }
+  ]
+}

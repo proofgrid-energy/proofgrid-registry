@@ -1,0 +1,189 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "deye-claim-intake",
+  "pack_version": "0.2.0",
+  "manufacturer": "deye",
+  "product_scope": {
+    "product_type": "inverter",
+    "models": [
+      "SUN-5K-SG04LP1-AU"
+    ]
+  },
+  "jurisdiction": "au-nz",
+  "effective": {
+    "status": "unknown",
+    "reason": "Raw date 01/11/2023 and serial-era applicability require source confirmation"
+  },
+  "sources": [
+    {
+      "source_id": "deye-au-nz-v2-9",
+      "title": "Deye SUN AU/NZ warranty v2.9",
+      "url": "https://www.deyeinverter.com/deyeinverter/2025/12/03/WarrantyDocument-DeyeSUNSeriesinverter10-YearLimitedWarrantyforInstallationinAustraliaandNewZealand-V2.91.pdf",
+      "document_version": "V2.9",
+      "reviewed_at": "2026-09-05"
+    }
+  ],
+  "coverage": "partial",
+  "limitations": [
+    "Claim-intake evidence only; no warranty eligibility or approval",
+    "Presence does not verify contents, authorization or physical facts",
+    "Only selected AU-type model; no Nigeria applicability",
+    "Warranty exclusions and manual compliance are outside intake checks"
+  ],
+  "rules": [
+    {
+      "rule_id": "identity",
+      "description": "Model and serial",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 5, section 3 claim information; page 6, section 5"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "asset"
+        ],
+        "properties": {
+          "asset": {
+            "type": "object",
+            "required": [
+              "model",
+              "serial_number"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "configuration",
+      "description": "PV and grid ratings",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 5, section 3 claim information; page 6, section 5"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "system_configuration"
+        ],
+        "properties": {
+          "system_configuration": {
+            "type": "object",
+            "required": [
+              "panels_per_string",
+              "grid_voltage",
+              "grid_frequency"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "fault",
+      "description": "Fault description and failure timestamp",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 5, section 3 claim information; page 6, section 5"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "fault"
+        ],
+        "properties": {
+          "fault": {
+            "type": "object",
+            "required": [
+              "description",
+              "occurred_at"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "installation-date",
+      "description": "Initial installation date",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 5, section 3 claim information; page 6, section 5"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "installation"
+        ],
+        "properties": {
+          "installation": {
+            "type": "object",
+            "required": [
+              "installation_date"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "invoice-conflict",
+      "description": "Invoice wording differs between sections; review requirement manually",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 5 section 3; page 6 section 5"
+        }
+      ],
+      "reason": "Invoice wording differs between sections; review requirement manually"
+    },
+    {
+      "rule_id": "contact-and-logs",
+      "description": "Claimant/shipping details and capacity-log applicability require review",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 6 section 5"
+        }
+      ],
+      "reason": "Claimant/shipping details and capacity-log applicability require review"
+    },
+    {
+      "rule_id": "serial-and-contract",
+      "description": "Serial-era eligibility, contract and notification period require review",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "deye-au-nz-v2-9",
+          "locator": "Page 5 section 4; page 6 section 5"
+        }
+      ],
+      "reason": "Serial-era eligibility, contract and notification period require review"
+    }
+  ],
+  "revision_history": [
+    {
+      "version": "0.2.0",
+      "reviewed_at": "2026-09-05",
+      "summary": "Reviewed claim-intake scope with explicit manual-review exclusions"
+    }
+  ]
+}

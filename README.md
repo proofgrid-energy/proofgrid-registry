@@ -2,7 +2,9 @@
 
 Source-backed manufacturer evidence rules for ProofGrid. Canonical schemas and the validation library belong to proofgrid-core; this repository owns source interpretation and manufacturer fixtures.
 
-**Status: bounded M1 walking skeleton.** The [partial Dyness DL5.0C Pro draft](rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json) checks paired-inverter manufacturer/model presence during failure investigation. Specifications, compatibility, complete policies and warranty approval are outside its coverage. The effective date is unknown and the purchase-proof wording remains unresolved.
+**Status: three reviewed claim-intake packs with 26 passing tests.** See [catalog](catalog.json), runnable JSON records under examples/, and [scope review](docs/research/claim-intake-review.md). These packs cover the named intake fields and retain manual-review clauses. The historical M1 example remains below for context.
+
+ The [partial Dyness DL5.0C Pro draft](rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json) checks paired-inverter manufacturer/model presence during failure investigation. Specifications, compatibility, complete policies and warranty approval are outside its coverage. The effective date is unknown and the purchase-proof wording remains unresolved.
 
 ## Standalone checks
 

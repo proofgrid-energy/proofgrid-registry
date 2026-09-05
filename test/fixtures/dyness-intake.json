@@ -1,0 +1,26 @@
+{
+  "pack": "../../rules/dyness/africa/dl5.0c-pro/0.2.0.json",
+  "record": "../../examples/dyness-claim.json",
+  "omissions": [
+    {
+      "rule_id": "identity",
+      "path": "asset.serial_number"
+    },
+    {
+      "rule_id": "paired-inverter",
+      "path": "system_configuration.components.0.specification_evidence"
+    },
+    {
+      "rule_id": "configuration",
+      "path": "system_configuration.load"
+    },
+    {
+      "rule_id": "fault",
+      "path": "fault.description"
+    },
+    {
+      "rule_id": "logs",
+      "path": "diagnostics.logs"
+    }
+  ]
+}

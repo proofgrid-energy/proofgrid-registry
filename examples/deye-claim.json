@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1",
+  "record_id": "synthetic-deye-claim",
+  "asset": {
+    "asset_id": "synthetic-primary",
+    "manufacturer": "deye",
+    "model": "SUN-5K-SG04LP1-AU",
+    "product_type": "inverter",
+    "serial_number": "SYNTHETIC-001"
+  },
+  "installation": {
+    "installation_date": "2026-01-01",
+    "country": "AU"
+  },
+  "system_configuration": {
+    "panels_per_string": 8,
+    "string_count": 2,
+    "connection": "parallel",
+    "grid_category": "single-phase",
+    "grid_voltage": {
+      "value": 230,
+      "unit": "V"
+    },
+    "grid_frequency": {
+      "value": 50,
+      "unit": "Hz"
+    }
+  },
+  "fault": {
+    "fault_id": "fault-1",
+    "description": "Synthetic inverter fault",
+    "occurred_at": "2026-09-01T12:00:00Z"
+  }
+}

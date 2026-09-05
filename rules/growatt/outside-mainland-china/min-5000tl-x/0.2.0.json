@@ -1,0 +1,161 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "growatt-claim-intake",
+  "pack_version": "0.2.0",
+  "manufacturer": "growatt",
+  "product_scope": {
+    "product_type": "inverter",
+    "models": [
+      "MIN 5000TL-X"
+    ]
+  },
+  "jurisdiction": "outside-mainland-china",
+  "effective": {
+    "status": "unknown",
+    "reason": "Effective date not established by reviewed source"
+  },
+  "sources": [
+    {
+      "source_id": "growatt-service-commitment",
+      "title": "Growatt service commitment",
+      "url": "https://en.growatt.com/support/warranty",
+      "document_version": null,
+      "reviewed_at": "2026-09-05"
+    }
+  ],
+  "coverage": "partial",
+  "limitations": [
+    "Claim-intake evidence only; no warranty eligibility or approval",
+    "Presence does not verify contents, authorization or physical facts",
+    "Model scope deliberately restricted to MIN 5000TL-X; exact region label does not resolve countries",
+    "Excludes warranty duration, exclusions and device-operating compliance"
+  ],
+  "rules": [
+    {
+      "rule_id": "identity",
+      "description": "Model and serial",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "growatt-service-commitment",
+          "locator": "Other important notice (1), items 1-3"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "asset"
+        ],
+        "properties": {
+          "asset": {
+            "type": "object",
+            "required": [
+              "model",
+              "serial_number"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "configuration",
+      "description": "PV and grid configuration",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "growatt-service-commitment",
+          "locator": "Other important notice (1), items 1-3"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "system_configuration"
+        ],
+        "properties": {
+          "system_configuration": {
+            "type": "object",
+            "required": [
+              "panels_per_string",
+              "string_count",
+              "connection",
+              "grid_category",
+              "grid_voltage",
+              "grid_frequency"
+            ],
+            "properties": {
+              "connection": {
+                "enum": [
+                  "series",
+                  "parallel",
+                  "mixed"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "fault",
+      "description": "Fault description",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "growatt-service-commitment",
+          "locator": "Other important notice (1), items 1-3"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "fault"
+        ],
+        "properties": {
+          "fault": {
+            "type": "object",
+            "required": [
+              "description"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "purchase-on-request",
+      "description": "Purchase documents are conditional on a request; review manually",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "growatt-service-commitment",
+          "locator": "Service terms (3)"
+        }
+      ],
+      "reason": "Purchase documents are conditional on a request; review manually"
+    },
+    {
+      "rule_id": "contract-and-country",
+      "description": "Check sales contract, OEM status and country alignment manually",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "growatt-service-commitment",
+          "locator": "Service terms (2); Other important notice (4)"
+        }
+      ],
+      "reason": "Check sales contract, OEM status and country alignment manually"
+    }
+  ],
+  "revision_history": [
+    {
+      "version": "0.2.0",
+      "reviewed_at": "2026-09-05",
+      "summary": "Reviewed claim-intake scope with explicit manual-review exclusions"
+    }
+  ]
+}

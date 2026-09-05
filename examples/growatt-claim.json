@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "record_id": "synthetic-growatt-claim",
+  "asset": {
+    "asset_id": "synthetic-primary",
+    "manufacturer": "growatt",
+    "model": "MIN 5000TL-X",
+    "product_type": "inverter",
+    "serial_number": "SYNTHETIC-001"
+  },
+  "system_configuration": {
+    "panels_per_string": 8,
+    "string_count": 2,
+    "connection": "parallel",
+    "grid_category": "single-phase",
+    "grid_voltage": {
+      "value": 230,
+      "unit": "V"
+    },
+    "grid_frequency": {
+      "value": 50,
+      "unit": "Hz"
+    }
+  },
+  "fault": {
+    "fault_id": "fault-1",
+    "description": "Synthetic intermittent shutdown"
+  }
+}

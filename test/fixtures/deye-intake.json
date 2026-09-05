@@ -1,0 +1,22 @@
+{
+  "pack": "../../rules/deye/au-nz/sun-5k-sg04lp1-au/0.2.0.json",
+  "record": "../../examples/deye-claim.json",
+  "omissions": [
+    {
+      "rule_id": "identity",
+      "path": "asset.serial_number"
+    },
+    {
+      "rule_id": "configuration",
+      "path": "system_configuration.grid_frequency"
+    },
+    {
+      "rule_id": "fault",
+      "path": "fault.occurred_at"
+    },
+    {
+      "rule_id": "installation-date",
+      "path": "installation.installation_date"
+    }
+  ]
+}
