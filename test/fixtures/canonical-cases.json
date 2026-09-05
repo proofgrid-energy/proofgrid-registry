@@ -1,0 +1,53 @@
+{
+  "schema": "../../contracts/core-0.1/evidence.schema.json",
+  "cases": [
+    {
+      "name": "complete identity fixture is structurally valid",
+      "valid": true,
+      "data": {
+        "schema_version": "0.1",
+        "record_id": "synthetic-dyness-investigation",
+        "asset": {
+          "asset_id": "battery-1",
+          "manufacturer": "dyness",
+          "model": "DL5.0C Pro",
+          "product_type": "battery",
+          "serial_number": "SYNTHETIC-001"
+        },
+        "fault": {
+          "fault_id": "fault-1",
+          "description": "Synthetic fault for schema tests"
+        },
+        "system_configuration": {
+          "components": [
+            {
+              "asset_id": "inverter-1",
+              "product_type": "inverter",
+              "manufacturer": "example",
+              "model": "SYNTHETIC-INVERTER"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing manufacturer evidence can still be structurally valid",
+      "valid": true,
+      "data": {
+        "schema_version": "0.1",
+        "record_id": "synthetic-dyness-investigation",
+        "asset": {
+          "asset_id": "battery-1",
+          "manufacturer": "dyness",
+          "model": "DL5.0C Pro",
+          "product_type": "battery",
+          "serial_number": "SYNTHETIC-001"
+        },
+        "fault": {
+          "fault_id": "fault-1",
+          "description": "Synthetic fault for schema tests"
+        }
+      }
+    }
+  ]
+}

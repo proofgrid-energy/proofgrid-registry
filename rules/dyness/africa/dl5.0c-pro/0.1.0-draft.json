@@ -1,0 +1,110 @@
+{
+  "schema_version": "0.1",
+  "pack_id": "dyness-africa-dl5-0c-pro-investigation",
+  "pack_version": "0.1.0-draft",
+  "manufacturer": "dyness",
+  "product_scope": {
+    "product_type": "battery",
+    "models": [
+      "DL5.0C Pro"
+    ]
+  },
+  "jurisdiction": "africa",
+  "effective": {
+    "status": "unknown",
+    "reason": "Conflicting document date labels; no verified effective date"
+  },
+  "sources": [
+    {
+      "source_id": "dyness-dl5-0c-pro-africa",
+      "title": "Dyness DL5.0C Pro ESS System warranty (Africa)",
+      "url": "https://za.dyness.com/Public/Uploads/uploadfile/files/20251022/DynessWarrantyTermsDL5.0CPro10nianfeizhou2025071.pdf",
+      "document_version": "Cover V2-202502; running label 202410 (unresolved)",
+      "reviewed_at": "2026-09-05"
+    }
+  ],
+  "coverage": "partial",
+  "limitations": [
+    "Schema experiment only; no warranty readiness or approval result",
+    "Only paired inverter manufacturer/model presence is encoded; specifications, other investigation data and compatibility are not checked",
+    "Actual country/product/date applicability must be reviewed; no automatic region resolution",
+    "Notification periods and incomplete proof wording are unresolved; do not execute those rules",
+    "No contents, signatures, authorization, reference targets or physical facts are verified"
+  ],
+  "rules": [
+    {
+      "rule_id": "paired-inverter-identity",
+      "description": "Paired inverter manufacturer and model during failure investigation; partial source requirement only",
+      "classification": "required",
+      "status": "executable",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, Responsibility and Obligation (1)"
+        }
+      ],
+      "constraint": {
+        "type": "object",
+        "required": [
+          "system_configuration"
+        ],
+        "properties": {
+          "system_configuration": {
+            "type": "object",
+            "required": [
+              "components"
+            ],
+            "properties": {
+              "components": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "required": [
+                    "product_type",
+                    "manufacturer",
+                    "model"
+                  ],
+                  "properties": {
+                    "product_type": {
+                      "const": "inverter"
+                    },
+                    "manufacturer": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    },
+                    "model": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "rule_id": "purchase-proof-wording",
+      "description": "Incomplete proof wording in the retrieved claim list",
+      "classification": "contextual",
+      "status": "unresolved",
+      "citations": [
+        {
+          "source_id": "dyness-dl5-0c-pro-africa",
+          "locator": "Page 5, claim documentation list (1)"
+        }
+      ],
+      "reason": "Source text is incomplete; do not infer an invoice requirement"
+    }
+  ],
+  "revision_history": [
+    {
+      "version": "0.1.0-draft",
+      "reviewed_at": "2026-09-05",
+      "summary": "Bounded M1 paired-inverter identity demonstration"
+    }
+  ]
+}

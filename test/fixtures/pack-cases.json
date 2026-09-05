@@ -1,0 +1,10 @@
+{
+  "schema": "../../contracts/core-0.1/rule-pack.schema.json",
+  "cases": [
+    {
+      "name": "partial Dyness draft has required provenance metadata",
+      "valid": true,
+      "data_file": "../../rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json"
+    }
+  ]
+}

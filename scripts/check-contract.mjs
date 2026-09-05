@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: MPL-2.0
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const read = file => JSON.parse(readFileSync(resolve(root, file), 'utf8'));
+const provenance = read('contracts/core-0.1/provenance.json');
+assert.equal(provenance.schema_version, '0.1');
+const args = process.argv.slice(2);
+assert.ok(args.length === 0 || (args.length === 2 && args[0] === '--core'), 'Usage: node scripts/check-contract.mjs [--core PATH]');
+for (const [file, expected] of Object.entries(provenance.sha256)) {
+  const bytes = readFileSync(resolve(root, 'contracts/core-0.1', file));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), expected, file + ' snapshot hash changed');
+  if (args.length) {
+    const current = readFileSync(resolve(args[1], 'schemas/0.1', file));
+    assert.ok(bytes.equals(current), file + ' differs from the explicitly supplied core source');
+  }
+}
+const pack = read('rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json');
+assert.equal(pack.schema_version, provenance.schema_version);
+const index = read('sources/index.json');
+const sources = new Map(pack.sources.map(source => [source.source_id, source]));
+assert.equal(sources.size, pack.sources.length, 'Duplicate source identifiers');
+assert.equal(new Set(pack.rules.map(rule => rule.rule_id)).size, pack.rules.length, 'Duplicate rule identifiers');
+for (const source of sources.values()) {
+  const registered = index.sources.find(item => item.source_id === source.source_id);
+  assert.ok(registered, 'Unregistered source');
+  for (const key of ['url', 'document_version', 'reviewed_at']) assert.equal(source[key], registered[key], 'Source metadata drift: ' + key);
+}
+for (const rule of pack.rules) {
+  assert.ok(rule.citations.length, 'Rule has no citation');
+  for (const citation of rule.citations) {
+    assert.ok(sources.has(citation.source_id), 'Rule cites an unknown source');
+    assert.ok(citation.locator.trim(), 'Rule has no locator');
+  }
+  if (rule.status === 'unresolved') assert.ok(!('constraint' in rule), 'Unresolved rule must not execute');
+}
+console.log('Contract snapshot hashes, source links and rule citations passed' + (args.length ? '; supplied core schema bytes match.' : '.'));
+console.log('Source snapshot only: packed npm artifact and runtime applicability checks remain pending.');

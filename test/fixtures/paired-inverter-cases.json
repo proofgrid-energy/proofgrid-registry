@@ -1,0 +1,112 @@
+{
+  "schema": "../../contracts/core-0.1/evidence.schema.json",
+  "pack": "../../rules/dyness/africa/dl5.0c-pro/0.1.0-draft.json",
+  "rule_id": "paired-inverter-identity",
+  "cases": [
+    {
+      "name": "paired inverter identity is present",
+      "valid": true,
+      "data": {
+        "schema_version": "0.1",
+        "record_id": "synthetic-dyness-investigation",
+        "asset": {
+          "asset_id": "battery-1",
+          "manufacturer": "dyness",
+          "model": "DL5.0C Pro",
+          "product_type": "battery",
+          "serial_number": "SYNTHETIC-001"
+        },
+        "fault": {
+          "fault_id": "fault-1",
+          "description": "Synthetic fault for schema tests"
+        },
+        "system_configuration": {
+          "components": [
+            {
+              "asset_id": "inverter-1",
+              "product_type": "inverter",
+              "manufacturer": "example",
+              "model": "SYNTHETIC-INVERTER"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing configuration fails the external constraint",
+      "valid": false,
+      "data": {
+        "schema_version": "0.1",
+        "record_id": "synthetic-dyness-investigation",
+        "asset": {
+          "asset_id": "battery-1",
+          "manufacturer": "dyness",
+          "model": "DL5.0C Pro",
+          "product_type": "battery",
+          "serial_number": "SYNTHETIC-001"
+        },
+        "fault": {
+          "fault_id": "fault-1",
+          "description": "Synthetic fault for schema tests"
+        }
+      }
+    },
+    {
+      "name": "a battery component does not satisfy inverter identity",
+      "valid": false,
+      "data": {
+        "schema_version": "0.1",
+        "record_id": "synthetic-dyness-investigation",
+        "asset": {
+          "asset_id": "battery-1",
+          "manufacturer": "dyness",
+          "model": "DL5.0C Pro",
+          "product_type": "battery",
+          "serial_number": "SYNTHETIC-001"
+        },
+        "fault": {
+          "fault_id": "fault-1",
+          "description": "Synthetic fault for schema tests"
+        },
+        "system_configuration": {
+          "components": [
+            {
+              "asset_id": "inverter-1",
+              "product_type": "battery",
+              "manufacturer": "example",
+              "model": "SYNTHETIC-INVERTER"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "inverter without model fails the external constraint",
+      "valid": false,
+      "data": {
+        "schema_version": "0.1",
+        "record_id": "synthetic-dyness-investigation",
+        "asset": {
+          "asset_id": "battery-1",
+          "manufacturer": "dyness",
+          "model": "DL5.0C Pro",
+          "product_type": "battery",
+          "serial_number": "SYNTHETIC-001"
+        },
+        "fault": {
+          "fault_id": "fault-1",
+          "description": "Synthetic fault for schema tests"
+        },
+        "system_configuration": {
+          "components": [
+            {
+              "asset_id": "inverter-1",
+              "product_type": "inverter",
+              "manufacturer": "example"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

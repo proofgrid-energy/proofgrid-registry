@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1",
+  "record_id": "synthetic-dyness-investigation",
+  "asset": {
+    "asset_id": "battery-1",
+    "manufacturer": "dyness",
+    "model": "DL5.0C Pro",
+    "product_type": "battery",
+    "serial_number": "SYNTHETIC-001"
+  },
+  "fault": {
+    "fault_id": "fault-1",
+    "description": "Synthetic fault for schema tests"
+  }
+}
