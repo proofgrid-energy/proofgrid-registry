@@ -151,3 +151,12 @@ medium; planning only. Actual Wave complexity and enrollment are set by maintain
 ## Contribution
 
 Open a focused feat/fix/test/docs branch. PRs explain behavior and actual validation and include Closes #<issue_id>. Follow CONTRIBUTING.md and SECURITY.md.
+
+## Published contributor issues
+
+- [Independently review one manufacturer pack against its source](https://github.com/proofgrid-energy/proofgrid-registry/issues/1) — proposed medium.
+- [Resolve a country-specific applicability boundary](https://github.com/proofgrid-energy/proofgrid-registry/issues/2) — proposed medium.
+- [Add source capture digest and license metadata checks](https://github.com/proofgrid-energy/proofgrid-registry/issues/3) — proposed medium.
+- [Test registry portability from an isolated checkout](https://github.com/proofgrid-energy/proofgrid-registry/issues/4) — proposed medium.
+- [Document registry-to-Stellar attestation composition](https://github.com/proofgrid-energy/proofgrid-registry/issues/5) — proposed trivial.
+- [Add reviewed rule-pack version change history](https://github.com/proofgrid-energy/proofgrid-registry/issues/6) — proposed medium.
